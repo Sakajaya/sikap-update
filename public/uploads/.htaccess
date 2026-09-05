@@ -1,0 +1,17 @@
+﻿# Blokir eksekusi semua script di folder uploads
+# Lapisan keamanan tambahan — file .php yang terlanjur terupload tidak bisa dieksekusi
+
+<FilesMatch "\.(php|php3|php4|php5|php7|phtml|phar|pl|py|cgi|sh|asp|aspx|jsp|htaccess)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Apache 2.4+
+<IfModule mod_authz_core.c>
+    <FilesMatch "\.(php|php3|php4|php5|php7|phtml|phar|pl|py|cgi|sh|asp|aspx|jsp)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+# Izinkan hanya file gambar dan dokumen
+Options -Indexes
